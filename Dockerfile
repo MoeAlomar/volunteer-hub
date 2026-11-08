@@ -22,5 +22,4 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction \
  && mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs bootstrap/cache \
  && chown -R www-data:www-data storage bootstrap/cache
 
-# Config is cached at start-up, when the real environment variables exist.
-CMD ["sh", "-c", "php artisan config:cache && php artisan route:cache && php artisan view:cache && apache2-foreground"]
+CMD ["apache2-foreground"]
