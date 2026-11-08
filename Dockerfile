@@ -6,6 +6,9 @@ RUN apt-get update \
  && a2enmod rewrite \
  && rm -rf /var/lib/apt/lists/*
 
+RUN a2dismod mpm_event mpm_worker 2>/dev/null || true \
+ && a2enmod mpm_prefork
+
 # Serve Laravel's /public folder, and listen on the port the host gives us ($PORT).
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 ENV PORT=8080
